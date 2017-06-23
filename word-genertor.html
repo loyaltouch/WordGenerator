@@ -1,0 +1,25 @@
+<html>
+  <head>
+	<meta charset="UTF-8" />
+	<title>人工言語単語生成ツール</title>
+	<link rel="stylesheet" href="view.css" />
+	<script src="jquery.min.js"></script>
+	<script src="logic.js"></script>
+  </head>
+  
+  <body>
+	<h1>人工言語単語生成ツール</h1>
+	入力文字<br />
+	<textarea id="char_list"></textarea>
+	<br />
+	文字数
+	最小
+	<input type="number" id="num_min" min="1" max="10" value="3" />
+	最大
+	<input type="number" id="num_max" min="1" max="10" value="6" />
+	<br />
+	<button id="do_generate">生成！</button>
+	<p id="word_result">(ここに単語が表示されます)</p>
+  </body>
+</html>
+	
