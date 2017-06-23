@@ -100,7 +100,7 @@ $(()=>{
   // 画面に初期値入力
   $("#char_list").val("ieaoupbmftdnlrskgmnŋ");
   $("#num_min").val(3);
-  $("#num_min").val(6);
+  $("#num_max").val(6);
   // 単語生成ボタンのクリックイベント
   $("#do_generate").click(do_generate);
 });
