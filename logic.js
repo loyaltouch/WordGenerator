@@ -17,7 +17,7 @@ class WordGenerator{
 
   /**
     * 引数の不正値をチェックし、なおせるものはなおす
-    * - 入力文字列に何も入っていなかったら初期値(ieaou)入力
+    * - 入力文字列に何も入っていなかったら初期値入力
     * - 最小値が範囲外だったら初期値(3)入力
     * - 最大値が範囲外だったら初期値(6)入力
     * - 最小値と最大値が逆だったら入れ替え
@@ -30,7 +30,15 @@ class WordGenerator{
     if(model.char_list == ""){
       model.char_list = "ieaou";
     }
-    
+
+    if(model.cons_list.length == 0){
+      model.cons_list = "ptk".split("");
+    }
+
+    if(model.vowel_list.length == 0){
+      model.vowel_list = "ieaou".split("");
+    }
+
     if(model.num_min < 1 || model.num_min > 50){
       model.num_min = 3;
     }
@@ -61,11 +69,7 @@ class WordGenerator{
     // 生成文字列長を決定
     const word_len = this.randi(model.num_max - model.num_min + 1) + model.num_min;
     // 単語生成
-    const char_list = model.char_list.split("");
-    let word_result = "";
-    for(let i = 0; i < word_len; i++){
-      word_result += char_list[this.randi(char_list.length)];
-    }
+    let word_result = this.gen_cons(model, "", word_len);
     return word_result;
   }
 

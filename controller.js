@@ -6,7 +6,8 @@
  */
 function view2model(){
   let model = {};
-  model.char_list = $("#char_list").val();
+  model.cons_list = $("#cons_list").val().split("");
+  model.vowel_list = $("#vowel_list").val().split("");
   model.num_min = (0 - $("#num_min").val()) * -1;
   model.num_max = (0 - $("#num_max").val()) * -1;
   model.word_result = $("#word_result").text();
@@ -20,7 +21,8 @@ function view2model(){
  * @param {Object}
  */
 function model2view(model){
-  $("#char_list").val(model.char_list);
+  $("#cons_list").val(model.cons_list.join(""));
+  $("#vowel_list").val(model.vowel_list.join(""));
   $("#num_min").val(model.num_min);
   $("#num_max").val(model.num_max);
   $("#word_result").text(model.word_result);
@@ -48,7 +50,8 @@ function do_generate(){
  */
 $(()=>{
   // 画面に初期値入力
-  $("#char_list").val("ieaoupbmftdnlrskgmnŋ");
+  $("#cons_list").val("pbmftdnlszkgŋ");
+  $("#vowel_list").val("ieaou");
   $("#num_min").val(3);
   $("#num_max").val(6);
   // 単語生成ボタンのクリックイベント
