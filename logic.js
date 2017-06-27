@@ -60,7 +60,14 @@ class WordGenerator{
     * 入力文字列に入力されている文字を利用し
     * 最小値～最大値までの文字数のランダムな単語を
     * 出力文字として出力する
-    *
+    * 生成アルゴリズムは子音・母音を交互に行う
+@startuml(generate_word.svg)
+[*] --> 子音
+子音 -> 母音 : [生成文字列長 ＜ 目標文字列長]
+子音 --> [*] : [生成文字列長 ≧ 目標文字列長]
+母音 -> 子音 : [生成文字列長 ＜ 目標文字列長]
+母音 --> [*] : [生成文字列長 ≧ 目標文字列長]
+@enduml
     * @method generate
     * @param {Object} 入力データセット
     * @return {String} 出力文字列
@@ -74,15 +81,12 @@ class WordGenerator{
   }
 
   /**
-    * 最小値～最大値までの文字数を生成するが、
-    * 生成アルゴリズムは子音・母音を交互に行う
-@startuml(generate_word.svg)
-[*] --> 子音
-子音 -> 母音 : [生成文字列長 ＜ 目標文字列長]
-子音 --> [*] : [生成文字列長 ≧ 目標文字列長]
-母音 -> 子音 : [生成文字列長 ＜ 目標文字列長]
-母音 --> [*] : [生成文字列長 ≧ 目標文字列長]
-@enduml
+    * 子音の生成
+    * 生成アルゴリズムの「子音」に相当
+    * @method gen_cons
+    * @param {Objcct} 入力データセット
+    * @param {String} 生成直前の文字列
+    * @param {Int} 目標文字列長
     */
   gen_cons(model, word, limit){
     // 文字抽出
@@ -93,6 +97,15 @@ class WordGenerator{
     }
     return wordN;
   }
+  
+  /**
+    * 母音の生成
+    * 生成アルゴリズムの「母音」に相当
+    * @method gen_cons
+    * @param {Objcct} 入力データセット
+    * @param {String} 生成直前の文字列
+    * @param {Int} 目標文字列長
+    */
   gen_vowel(model, word, limit){
     // 文字抽出
     const ch = model.vowel_list[this.randi(model.vowel_list.length)];
