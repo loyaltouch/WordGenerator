@@ -20,3 +20,12 @@ QUnit.test("char_listに文字が入っていなければ既定値を入力", as
   assert.equal(result.char_list, "ieaou", "規定値ieaou");
 });
 
+QUnit.test("母音・子音を交互に使って単語作成", assert => {
+  let w = new WordGenerator();
+  let model = {};
+  model.vowel_list = ["a", "i", "u", "e", "o"];
+  model.cons_list = ["k", "t", "p"];
+  result = w.gen_cons(model, "", 3);
+  assert.equal(result.length, 3, "生成文字=" + result);
+});
+

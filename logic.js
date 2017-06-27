@@ -68,4 +68,35 @@ class WordGenerator{
     }
     return word_result;
   }
+
+  /**
+    * 最小値～最大値までの文字数を生成するが、
+    * 生成アルゴリズムは子音・母音を交互に行う
+@startuml(generate_word.svg)
+[*] --> 子音
+子音 -> 母音 : [生成文字列長 ＜ 目標文字列長]
+子音 --> [*] : [生成文字列長 ≧ 目標文字列長]
+母音 -> 子音 : [生成文字列長 ＜ 目標文字列長]
+母音 --> [*] : [生成文字列長 ≧ 目標文字列長]
+@enduml
+    */
+  gen_cons(model, word, limit){
+    // 文字抽出
+    const ch = model.cons_list[this.randi(model.cons_list.length)];
+    let wordN = word + ch;
+    if(wordN.length < limit){
+      wordN = this.gen_vowel(model, wordN, limit);
+    }
+    return wordN;
+  }
+  gen_vowel(model, word, limit){
+    // 文字抽出
+    const ch = model.vowel_list[this.randi(model.vowel_list.length)];
+    let wordN = word + ch;
+    if(wordN.length < limit){
+      wordN = this.gen_cons(model, wordN, limit);
+    }
+    return wordN;
+  }
+  
 }
